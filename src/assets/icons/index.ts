@@ -1,0 +1,13 @@
+export { default as HomeIcon } from "./HomeIcon";
+export { default as UserGroupIcon } from "./UserGroupIcon";
+export { default as UserIcon } from "./UserIcon";
+export { default as TimeIcon } from "./TimeIcon";
+export { default as StarIcon } from "./StarIcon";
+export { default as DownloadIcon } from "./DownloadIcon";
+export { default as TvIcon } from "./TvIcon";
+export { default as MoviesIcon } from "./MoviesIcon";
+export { default as SettingIcon } from "./SettingIcon";
+export { default as LogoutIcon } from "./LogoutIcon";
+export { default as SearchIcon } from "./SearchIcon";
+export { default as PrevIcon } from "./PrevIcon";
+export { default as NextIcon } from "./NextIcon";
