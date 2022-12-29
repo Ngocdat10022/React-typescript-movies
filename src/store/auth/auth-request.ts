@@ -19,7 +19,6 @@ export const requestAuthGetme = (token: string) => {
 };
 export const requestAuthRefreshToken = (token: string) => {
   console.log(token);
-  if (!token) return;
   return axios.post("/token", {
     "Content-type": "Application/json",
     refreshToken: token,

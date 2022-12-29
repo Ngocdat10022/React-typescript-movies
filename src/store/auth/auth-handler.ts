@@ -9,7 +9,7 @@ import {
 import "react-toastify/dist/ReactToastify.css";
 // import { IAction } from "../../constant/interface";
 import { PayloadAction } from "@reduxjs/toolkit";
-import { saveToken } from "../../utils/auth";
+import { logout, saveToken } from "../../utils/auth";
 import { authUpdateUser } from "./auth-slice";
 import { IAction } from "../../constant/interface";
 function* handleRequestAuthResgiter(action: PayloadAction<any>): any {
@@ -62,26 +62,28 @@ function* handleRequestAuthLogin(action: PayloadAction<any>): any {
     if (error.response.status === 403) toast.error("Login Fail");
   }
 }
-function* handleRequestAuthRefreshToken(action: IAction): any {
+function* handleRequestAuthRefreshToken(action: PayloadAction<any>): any {
   const { payload } = action;
   try {
+    console.log("call request authrefreshtoken");
     const res = yield call(requestAuthRefreshToken, payload);
     if (res.data) {
       saveToken(res.data.accessToken, res.data.refreshToken);
+      console.log("RUN auth get me");
       yield handleRequestAuthGetme({
         payload: res.data.accessToken,
       });
     }
   } catch (error) {}
 }
-// function* handleLogout() {
-//   yield put(authUpdateUser({}));
-//   logout();
-// }
+function* handleLogout(): any {
+  yield put(authUpdateUser({}));
+  logout();
+}
 export {
   handleRequestAuthResgiter,
   handleRequestAuthLogin,
   handleRequestAuthGetme,
   handleRequestAuthRefreshToken,
-  // handleLogout,
+  handleLogout,
 };

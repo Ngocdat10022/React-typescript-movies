@@ -1,41 +1,43 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { SearchIcon, StarIcon } from "../../assets/icons";
 import Heading from "../Heading";
 import Button from "../Button";
 import TagList from "../Tag/TagList";
 import TitleCard from "../TitleCard";
-// import { useDispatch, useSelector } from "react-redux";
-// import {
-//   getMoviesPopular,
-//   getMoviesTopRated,
-// } from "~/Store/movies/movies-silce";
-// import { useNavigate } from "react-router-dom";
-// import { setIndex } from "~/constant/globalFunc";
-// import tmdbMovies from "~/constant/apiGetMovies";
-
-const SidebarRight = (props: {}) => {
-  // const navigate = useNavigate();
-  // const movies = useSelector((state) => state.movies);
-  // const { index: indexPopular, handleSetIndex: handleSetIndexPopular } =
-  //   setIndex();
-  // const { index: indexTopReted, handleSetIndex: handleSetIndexTopReted } =
-  //   setIndex();
-  // const dataPopular = movies.movies_Popular;
-  // const dataTopReted = movies.movies_Top_Rated;
-  // const dataSlice = {
-  //   dataPopularSlice: dataPopular.slice(0, indexPopular),
-  //   dataTopRetedSlice: dataTopReted.slice(0, indexTopReted),
-  // };
-  // const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(getMoviesPopular({ type: "popular" }));
-  //   if (dataTopReted.length <= 0) {
-  //     dispatch(getMoviesTopRated({ type: "top_rated" }));
-  //   }
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getMoviesPopular,
+  getMoviesTopRated,
+} from "../../store/movies/movies-silce";
+import { useNavigate } from "react-router-dom";
+import { setIndex } from "../../constant/globalFunc";
+import tmdbMovies from "../../constant/apiGetMovies";
+import { IData, IState } from "../../constant/interface";
+const SidebarRight = () => {
+  const navigate = useNavigate();
+  const { movies_Popular, movies_Top_Rated } = useSelector(
+    (state: IState) => state.movies
+  );
+  const { index: indexPopular, handleSetIndex: handleSetIndexPopular } =
+    setIndex();
+  const { index: indexTopReted, handleSetIndex: handleSetIndexTopReted } =
+    setIndex();
+  const dataPopular = movies_Popular;
+  const dataTopReted = movies_Top_Rated;
+  const dataSlice = {
+    dataPopularSlice: dataPopular.slice(0, indexPopular),
+    dataTopRetedSlice: dataTopReted.slice(0, indexTopReted),
+  };
+  console.log("dataSlice", dataSlice.dataPopularSlice);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getMoviesPopular({ type: "popular" }));
+    if (dataTopReted.length <= 0) {
+      dispatch(getMoviesTopRated({ type: "top_rated" }));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <WrappersidebarRight>
       <div className="wrapper-input">
@@ -45,8 +47,8 @@ const SidebarRight = (props: {}) => {
       <div className="sidebar-content">
         <Heading name="Poppular Movies" />
         <div className="siderbar-content_card">
-          {/* {dataSlice.dataPopularSlice.length > 0 &&
-            dataSlice.dataPopularSlice.map((item) => {
+          {dataSlice.dataPopularSlice.length > 0 &&
+            dataSlice.dataPopularSlice.map((item: any) => {
               return (
                 <div
                   className="card"
@@ -79,8 +81,8 @@ const SidebarRight = (props: {}) => {
                   </div>
                 </div>
               );
-            })} */}
-          <div
+            })}
+          {/* <div
             className="card"
             // onClick={() => {
             //   navigate(`/movies-details/${item.id}`);
@@ -108,23 +110,23 @@ const SidebarRight = (props: {}) => {
               </div>
               <TagList></TagList>
             </div>
-          </div>
+          </div> */}
         </div>
         <Button
           children="See more"
           isBold={false}
           type="button"
-          // onClick={() => {
-          //   handleSetIndexPopular(dataSlice.dataPopularSlice.length);
-          // }}
-          onClick={() => {}}
+          onClick={() => {
+            handleSetIndexPopular(dataSlice.dataPopularSlice.length);
+          }}
+          // onClick={() => {}}
         />
       </div>
       <div className="sidebar-content">
         <Heading name=" Movies" />
         <div className="siderbar-content_card">
-          {/* {dataSlice.dataTopRetedSlice.length > 0 &&
-            dataSlice.dataTopRetedSlice.map((item) => {
+          {dataSlice.dataTopRetedSlice.length > 0 &&
+            dataSlice.dataTopRetedSlice.map((item: any) => {
               return (
                 <div
                   className="card"
@@ -157,8 +159,8 @@ const SidebarRight = (props: {}) => {
                   </div>
                 </div>
               );
-            })} */}
-          <div
+            })}
+          {/* <div
             className="card"
             // onClick={() => {
             //   navigate(`/movies-details/${item.id}`);
@@ -186,20 +188,19 @@ const SidebarRight = (props: {}) => {
               </div>
               <TagList></TagList>
             </div>
-          </div>
+          </div> */}
         </div>
         <Button
           children="See more"
           isBold={false}
-          // onClick={() => {
-          //   handleSetIndexTopReted(dataSlice.dataTopRetedSlice.length);
-          // }}
+          onClick={() => {
+            handleSetIndexTopReted(dataSlice.dataTopRetedSlice.length);
+          }}
         />
       </div>
     </WrappersidebarRight>
   );
 };
-SidebarRight.propTypes = {};
 const WrappersidebarRight = styled.div`
   background-color: ${(props) => props.theme.color.sidebarColor};
   width: ${(props) => props.theme.width.sideBarright};

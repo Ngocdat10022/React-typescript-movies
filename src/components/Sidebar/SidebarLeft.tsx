@@ -10,11 +10,10 @@ import {
   LIST_GENNERAL,
 } from "../../constant/data";
 import TitleSidebar from "./TitleSidebar";
-// import { useDispatch } from "react-redux";
-// import { authLogout } from "~/Store/auth/auth-slice";
-
+import { authLogout } from "../../store/auth/auth-slice";
+import { useDispatch } from "react-redux";
 const SidebarLeft = (props: {}) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   return (
     <WrappersidebarLeft>
       <Heading name="Watch" />
@@ -25,7 +24,7 @@ const SidebarLeft = (props: {}) => {
             LIST_NAV_ONE.map((item: INavlist, index) => {
               return (
                 <NavLink to={item.to} key={item.id} className={`nav_link `}>
-                  <span>{item.id}</span>
+                  <span>{item.icon}</span>
                   <li>{item.name}</li>
                 </NavLink>
               );
@@ -37,7 +36,7 @@ const SidebarLeft = (props: {}) => {
             LIST_LIBARY.map((item: INavlist, index) => {
               return (
                 <Link to={item.to} key={item.id} className={`nav_link`}>
-                  <span>{item.id}</span>
+                  <span>{item.icon}</span>
                   <li>{item.name}</li>
                 </Link>
               );
@@ -48,7 +47,7 @@ const SidebarLeft = (props: {}) => {
           {LIST_CATEGORY.length > 0 &&
             LIST_CATEGORY.map((item: INavlist, index) => {
               return (
-                <Link to={item.to} key={item.id} className={`nav_Link`}>
+                <Link to={item.to} key={item.id} className="nav_link">
                   <span>{item.icon}</span>
                   <li>{item.name}</li>
                 </Link>
@@ -64,14 +63,14 @@ const SidebarLeft = (props: {}) => {
                   onClick={() => {
                     if (item.id === 1) {
                       console.log("logout Success");
-                      // dispatch(authLogout());
+                      dispatch(authLogout({}));
                     }
                   }}
                   to={item.to}
                   key={item.id}
                   className={`nav_link `}
                 >
-                  <span>{item.id}</span>
+                  <span>{item.icon}</span>
                   <li>{item.name}</li>
                 </Link>
               );

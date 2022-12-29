@@ -3,8 +3,9 @@ import Button from "../Button";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import tmdbMovies from "../../constant/apiGetMovies";
+import { IData } from "../../constant/interface";
 
-const BannerItem = ({ data }: { data: any }) => {
+const BannerItem = ({ data }: { data: IData }) => {
   const { id } = data;
   const navigate = useNavigate();
   return (
@@ -24,9 +25,9 @@ const BannerItem = ({ data }: { data: any }) => {
             width="200px"
             children="Watch"
             isBold={true}
-            // onClick={() => {
-            //   navigate(`movies-details/${id}`);
-            // }}
+            onClick={() => {
+              navigate(`movies-details/${id}`);
+            }}
           />
           <div className="banner__plus">
             <svg

@@ -1,20 +1,23 @@
-// import React, { ReactNode } from "react";
-// import HomeIcon from "../assets/icons/HomeIcon";
-// import {
-//   DownloadIcon,
-//   LogoutIcon,
-//   MoviesIcon,
-//   SettingIcon,
-//   StarIcon,
-//   TimeIcon,
-//   TvIcon,
-//   UserGroupIcon,
-//   UserIcon,
-// } from "../assets/icons";
+import React from "react";
+import {
+  HomeIcon,
+  DownloadIcon,
+  LogoutIcon,
+  MoviesIcon,
+  NextIcon,
+  PrevIcon,
+  SearchIcon,
+  SettingIcon,
+  StarIcon,
+  TimeIcon,
+  TvIcon,
+  UserGroupIcon,
+  UserIcon,
+} from "../assets/icons";
 export interface INavlist {
   id: number;
   name: string;
-  icon?: JSX.Element;
+  icon?: React.ReactNode | JSX.Element;
   to: string;
 }
 export const LIST_NAV_ONE: INavlist[] = [

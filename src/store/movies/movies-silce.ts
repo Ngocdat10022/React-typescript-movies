@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-const initialState = {
+import { IStateMovies } from "../../constant/interface";
+const initialState: IStateMovies = {
   moviesList: [],
   movies_Now_Playing: [],
   movies_Top_Rated: [],
   movies_Search: [],
-  movies_Details: {},
+  movies_Details: [],
   movies_Credits: [],
   video_Trailer: [],
   movies_Similar: [],
@@ -26,77 +27,83 @@ const moviesSlice = createSlice({
     //     moviesList: dataMovies,
     //   };
     // },
-    // getMoviesNowPlaying: (state, action) => {},
-    // getMoviesNowPlayingSuccess: (state, action) => {
-    //   console.log("action", action);
-    //   const dataMovies = action.payload.data || [];
-    //   return {
-    //     ...state,
-    //     movies_Now_Playing: dataMovies,
-    //   };
-    // },
-    // getMoviesTopRated: (state, action) => {},
-    // getMoviesTopRatedSuccess: (state, action) => {
-    //   console.log("action", action);
-    //   const dataMovies = action.payload.data || [];
-    //   return {
-    //     ...state,
-    //     movies_Top_Rated: dataMovies,
-    //   };
-    // },
-    // setLoading: (state, action) => {
-    //   const { payload } = action;
-    //   return {
-    //     ...state,
-    //     loading: payload,
-    //   };
-    // },
-    // getMoviesSearch: (state, action) => {},
-    // getMoviesSearchSuccess: (state, action) => {
-    //   const dataMovies = action.payload.data || [];
-    //   return {
-    //     ...state,
-    //     movies_Search: dataMovies,
-    //   };
-    // },
-    // setQuerySearch: (state, action) => {
-    //   return {
-    //     ...state,
-    //     querySearch: action.payload.query,
-    //   };
-    // },
-    // getMoviesDetails: (state, action) => {},
-    // getMoviesDetailsSuccess: (state, action) => {
-    //   const dataCredits = action.payload.data || [];
-    //   return {
-    //     ...state,
-    //     movies_Details: dataCredits,
-    //   };
-    // },
-    // getMoviesCredits: (state, action) => {},
-    // getMoviesCreditsSuccess: (state, action) => {
-    //   const { payload } = action;
-    //   return {
-    //     ...state,
-    //     movies_Credits: payload.data,
-    //   };
-    // },
-    // getMoviesTrailer: () => {},
-    // getMoviesTrailerSuccess: (state, action) => {
-    //   const { payload } = action;
-    //   return {
-    //     ...state,
-    //     video_Trailer: payload.data,
-    //   };
-    // },
-    // getMoviesSimilar: (state, action) => {},
-    // getMoviesSimilarSuccess: (state, action) => {
-    //   const { payload } = action;
-    //   return {
-    //     ...state,
-    //     movies_Similar: payload.data,
-    //   };
-    // },
+    getMoviesNowPlaying: (state, action) => {},
+    getMoviesNowPlayingSuccess: (state, action) => {
+      console.log("action", action);
+      const dataMovies = action.payload.data || [];
+      return {
+        ...state,
+        movies_Now_Playing: dataMovies,
+      };
+    },
+
+    getMoviesTopRated: (state, action) => {},
+    getMoviesTopRatedSuccess: (state, action) => {
+      console.log("action", action);
+      const dataMovies = action.payload.data || [];
+      return {
+        ...state,
+        movies_Top_Rated: dataMovies,
+      };
+    },
+
+    setLoading: (state, action) => {
+      const { payload } = action;
+      return {
+        ...state,
+        loading: payload,
+      };
+    },
+    getMoviesSearch: (state, action) => {},
+    getMoviesSearchSuccess: (state, action) => {
+      const dataMovies = action.payload.data || [];
+      return {
+        ...state,
+        movies_Search: dataMovies,
+      };
+    },
+    setQuerySearch: (state, action) => {
+      return {
+        ...state,
+        querySearch: action.payload.query,
+      };
+    },
+    getMoviesDetails: (state, action) => {},
+    getMoviesDetailsSuccess: (state, action) => {
+      const dataCredits = action.payload.data || [];
+      return {
+        ...state,
+        movies_Details: dataCredits,
+      };
+    },
+    getMoviesCredits: (state, action) => {},
+    getMoviesCreditsSuccess: (state, action) => {
+      const { payload } = action;
+      return {
+        ...state,
+        movies_Credits: payload.data,
+      };
+    },
+    getMoviesTrailer: (state, action) => {
+      return {
+        ...state,
+      };
+    },
+    getMoviesTrailerSuccess: (state, action) => {
+      const { payload } = action;
+      return {
+        ...state,
+        video_Trailer: payload.data,
+      };
+    },
+    getMoviesSimilar: (state, action) => {},
+    getMoviesSimilarSuccess: (state, action) => {
+      const { payload } = action;
+      return {
+        ...state,
+        movies_Similar: payload.data,
+      };
+    },
     getMoviesPopular: (state, actio: PayloadAction<any>) => {
       return {
         ...state,
@@ -109,36 +116,36 @@ const moviesSlice = createSlice({
         movies_Popular: payload.data,
       };
     },
-    // getTotalPage: (state, action) => {
-    //   const { payload } = action;
-    //   return {
-    //     ...state,
-    //     total_page: payload.totalPage,
-    //   };
-    // },
+    getTotalPage: (state, action) => {
+      const { payload } = action;
+      return {
+        ...state,
+        total_page: payload.totalPage,
+      };
+    },
   },
 });
 export const {
-  // setQuerySearch,
+  setQuerySearch,
   // getMovies,
   // getUpCommingSuccess,
-  // getMoviesNowPlaying,
-  // getMoviesNowPlayingSuccess,
-  // getMoviesTopRated,
-  // getMoviesTopRatedSuccess,
-  // getMoviesSearch,
-  // getMoviesSearchSuccess,
-  // setLoading,
-  // getMoviesDetails,
-  // getMoviesDetailsSuccess,
-  // getMoviesCredits,
-  // getMoviesCreditsSuccess,
-  // getMoviesTrailer,
-  // getMoviesTrailerSuccess,
-  // getMoviesSimilar,
-  // getMoviesSimilarSuccess,
+  getMoviesNowPlaying,
+  getMoviesNowPlayingSuccess,
+  getMoviesTopRated,
+  getMoviesTopRatedSuccess,
+  getMoviesSearch,
+  getMoviesSearchSuccess,
+  setLoading,
+  getMoviesDetails,
+  getMoviesDetailsSuccess,
+  getMoviesCredits,
+  getMoviesCreditsSuccess,
+  getMoviesTrailer,
+  getMoviesTrailerSuccess,
+  getMoviesSimilar,
+  getMoviesSimilarSuccess,
   getMoviesPopular,
   getMoviesPopularSuccess,
-  // getTotalPage,
+  getTotalPage,
 } = moviesSlice.actions;
 export default moviesSlice.reducer;

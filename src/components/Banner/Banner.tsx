@@ -5,11 +5,11 @@ import "swiper/css";
 import { useDispatch, useSelector } from "react-redux";
 import { getMoviesPopular } from "../../store/movies/movies-silce";
 import BannerItem from "./BannerItem";
-const Banner = ({ type }: { type: string | "popular" }) => {
+import { IState } from "../../constant/interface";
+const Banner = ({ type }: { type: string | "popular" }): JSX.Element => {
   const dispath = useDispatch();
-  const { movies_Popular } = useSelector((state: any) => state.movies);
+  const { movies_Popular } = useSelector((state: IState) => state.movies);
   console.log("movies_Popular", movies_Popular);
-
   useEffect(() => {
     dispath(getMoviesPopular({ type: type }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -17,7 +17,16 @@ const Banner = ({ type }: { type: string | "popular" }) => {
   if (!movies_Popular) return <></>;
   return (
     <>
-      <Swiper grabCursor spaceBetween={0} slidesPerView="auto">
+      <Swiper
+        grabCursor
+        spaceBetween={0}
+        // loop={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: true,
+        }}
+        slidesPerView="auto"
+      >
         {movies_Popular.length > 0 &&
           movies_Popular.map((item: any) => {
             return (

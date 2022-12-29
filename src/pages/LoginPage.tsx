@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import Field from "../components/Field";
 import Label from "../components/Label";
@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authLogin } from "../store/auth/auth-slice";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-// import { useEffect } from "react";
+import { IState } from "../constant/interface";
 const schema = yup
   .object({
     email: yup.string().required(),
@@ -28,7 +28,7 @@ const schema = yup
       ),
   })
   .required();
-const LoginPage = (props: {}) => {
+const LoginPage = () => {
   const { value: isOpen, handleToogleValue: handleTogglePassword } =
     useToogleValue(false);
   const {
@@ -39,20 +39,22 @@ const LoginPage = (props: {}) => {
     resolver: yupResolver(schema),
   });
   const dispatch = useDispatch();
-  const { user } = useSelector((state: { auth: any }) => state.auth);
+  const { user } = useSelector((state: IState) => state.auth);
   console.log("user", user);
   const handleLogin = (values: {}) => {
     console.log("values", values);
     dispatch(authLogin({ ...values }));
   };
-  // const naviagte = useNavigate();
-  // const { user } = useSelector((state) => state.auth);
-  // console.log(user);
-  // useEffect(() => {
-  //   if (user || user?.email) {
-  //     naviagte("/");
-  //   }
-  // });
+  const naviagte = useNavigate();
+  console.log(user);
+  useEffect(() => {
+    if (user?.email) {
+      naviagte("/");
+    } else {
+      return;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
   return (
     <Login>
       <div className="overlay"></div>
@@ -60,7 +62,7 @@ const LoginPage = (props: {}) => {
         <div className="box">
           <h1 className="title">Login</h1>
           <Field>
-            <Label htmlFor="">email</Label>
+            <Label htmlFor="">Email</Label>
             <Input
               message={errors?.email?.message}
               control={control}
@@ -69,7 +71,7 @@ const LoginPage = (props: {}) => {
             ></Input>
           </Field>
           <Field>
-            <Label htmlFor="">password</Label>
+            <Label htmlFor="">Password</Label>
             <Input
               message={errors?.password?.message}
               control={control}
@@ -91,7 +93,6 @@ const LoginPage = (props: {}) => {
     </Login>
   );
 };
-LoginPage.propTypes = {};
 const Login = styled.div`
   width: 100%;
   height: 100vh;

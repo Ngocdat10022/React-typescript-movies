@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { IState } from "../../constant/interface";
 const navLink = [
   {
     name: "TV series",
@@ -17,14 +18,14 @@ const navLink = [
   },
 ];
 const Header = () => {
-  const { user } = useSelector((state: any) => state.auth);
-  console.log(user);
+  const { user } = useSelector((state: IState) => state.auth);
+  console.log("userHeader", user);
   return (
     <WrapperHeader className="header">
       <nav>
         {navLink.map((item) => {
           return (
-            <NavLink to={item.to} key={item.name}>
+            <NavLink to={item.to} key={item?.name}>
               <li>{item.name}</li>
             </NavLink>
           );

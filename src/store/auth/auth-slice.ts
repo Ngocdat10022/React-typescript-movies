@@ -1,6 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-const initialState = {
-  user: [],
+import { IStateAuth } from "../../constant/interface";
+
+const initialState: IStateAuth = {
+  user: {
+    email: "",
+    id: 0,
+    name: "",
+    password: "",
+    refreshToken: "",
+  },
   accessToken: null,
 };
 const authSlice = createSlice({
@@ -39,7 +47,7 @@ const authSlice = createSlice({
         ...action.payload,
       };
     },
-    // authLogout: (state, action) => {},
+    authLogout: (state, action) => {},
   },
 });
 export const {
@@ -48,6 +56,6 @@ export const {
   authUpdateUser,
   authGetMe,
   authRefreshToken,
-  // authLogout,
+  authLogout,
 } = authSlice.actions;
 export default authSlice.reducer;

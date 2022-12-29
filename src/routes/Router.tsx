@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import { LoginPage, ResgiterPage } from "../pages";
+import { LoginPage, ResgiterPage, MoviesDetailPage } from "../pages";
+import MoviesPage from "../pages/MoviesPage";
 const HomePage = lazy(() => import("../pages/HomePage"));
 // const MoviesDetailPage = lazy(() => import("~/pages/MoviesDetailPage"));
 // const MoviesPage = lazy(() => import("~/pages/MoviesPage"));
@@ -18,11 +19,18 @@ const Router = () => {
               </>
             }
           />
-          {/* <Route path="/movies" element={<><MoviesPage /></>} /> */}
-          {/* <Route
+          <Route
+            path="/movies"
+            element={
+              <>
+                <MoviesPage />
+              </>
+            }
+          />
+          <Route
             path="/movies-details/:id"
-            // element={<MoviesDetailPage />}
-          ></Route> */}
+            element={<MoviesDetailPage />}
+          ></Route>
         </Route>
         <Route path="/login" element={<LoginPage></LoginPage>}></Route>
         <Route path="/register" element={<ResgiterPage></ResgiterPage>}></Route>

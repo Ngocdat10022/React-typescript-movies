@@ -1,13 +1,28 @@
-export { default as HomeIcon } from "./HomeIcon";
-export { default as UserGroupIcon } from "./UserGroupIcon";
-export { default as UserIcon } from "./UserIcon";
-export { default as TimeIcon } from "./TimeIcon";
-export { default as StarIcon } from "./StarIcon";
-export { default as DownloadIcon } from "./DownloadIcon";
-export { default as TvIcon } from "./TvIcon";
-export { default as MoviesIcon } from "./MoviesIcon";
-export { default as SettingIcon } from "./SettingIcon";
-export { default as LogoutIcon } from "./LogoutIcon";
-export { default as SearchIcon } from "./SearchIcon";
-export { default as PrevIcon } from "./PrevIcon";
-export { default as NextIcon } from "./NextIcon";
+import HomeIcon from "./HomeIcon";
+import UserGroupIcon from "./UserGroupIcon";
+import UserIcon from "./UserIcon";
+import TimeIcon from "./TimeIcon";
+import StarIcon from "./StarIcon";
+import DownloadIcon from "./DownloadIcon";
+import TvIcon from "./TvIcon";
+import MoviesIcon from "./MoviesIcon";
+import SettingIcon from "./SettingIcon";
+import LogoutIcon from "./LogoutIcon";
+import SearchIcon from "./SearchIcon";
+import PrevIcon from "./PrevIcon";
+import NextIcon from "./NextIcon";
+export {
+  HomeIcon,
+  UserGroupIcon,
+  UserIcon,
+  TimeIcon,
+  StarIcon,
+  DownloadIcon,
+  TvIcon,
+  MoviesIcon,
+  SettingIcon,
+  LogoutIcon,
+  SearchIcon,
+  PrevIcon,
+  NextIcon,
+};

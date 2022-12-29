@@ -9,11 +9,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import IconeysToogle from "../components/icons/IconeysToogle";
 import Button from "../components/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authResgiter } from "../store/auth/auth-slice";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { IState } from "../constant/interface";
 
 const schema = yup
   .object({
@@ -29,7 +30,7 @@ const schema = yup
       ),
   })
   .required();
-const ResgiterPage = (props: {}) => {
+const ResgiterPage = () => {
   const { value: isOpen, handleToogleValue: handleTogglePassword } =
     useToogleValue(false);
   const {
@@ -48,13 +49,13 @@ const ResgiterPage = (props: {}) => {
       })
     );
   };
-  // const { user } = useSelector((state) => state.auth);
-  // console.log("user", user);
-  // const navigate = useNavigate();
-  // useEffect(() => {
-  //   if (user) navigate("/");
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [user]);
+  const { user } = useSelector((state: IState) => state.auth);
+  console.log("user", user);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (user?.email) navigate("/");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.email]);
   return (
     <Resgiter>
       <div className="overlay"></div>
@@ -62,7 +63,7 @@ const ResgiterPage = (props: {}) => {
         <div className="box">
           <h1 className="title">Resgiter</h1>
           <Field>
-            <Label htmlFor="">username</Label>
+            <Label htmlFor="">Username</Label>
             <Input
               message={errors?.name?.message}
               control={control}
@@ -71,7 +72,7 @@ const ResgiterPage = (props: {}) => {
             ></Input>
           </Field>
           <Field>
-            <Label htmlFor="">email</Label>
+            <Label htmlFor="">Email</Label>
             <Input
               message={errors?.email?.message}
               control={control}
@@ -80,7 +81,7 @@ const ResgiterPage = (props: {}) => {
             ></Input>
           </Field>
           <Field>
-            <Label htmlFor="">password</Label>
+            <Label htmlFor="">Password</Label>
             <Input
               control={control}
               name="password"
