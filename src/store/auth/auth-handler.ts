@@ -11,7 +11,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { logout, saveToken } from "../../utils/auth";
 import { authUpdateUser } from "./auth-slice";
-import { IAction } from "../../constant/interface";
+import { IAction, IState } from "../../constant/interface";
+import { useSelector } from "react-redux";
 function* handleRequestAuthResgiter(action: PayloadAction<any>): any {
   try {
     const { payload } = action;
@@ -76,8 +77,20 @@ function* handleRequestAuthRefreshToken(action: PayloadAction<any>): any {
     }
   } catch (error) {}
 }
+// const { user } = useSelector((state: IState) => state.auth);
 function* handleLogout(): any {
-  yield put(authUpdateUser({}));
+  yield put(
+    authUpdateUser({
+      user: {
+        email: "",
+        id: 0,
+        name: "",
+        password: "",
+        refreshToken: "",
+      },
+      access_token: null,
+    })
+  );
   logout();
 }
 export {
