@@ -1,7 +1,6 @@
 import Cookies from "js-cookie";
 const accessTokenKey: string = "movies_access_token";
 const refreshTokenKey: string = "movies_refresh_token";
-
 const objCookies = {
   expires: 30,
   domain: process.env.COOKIES_DOMAIN,

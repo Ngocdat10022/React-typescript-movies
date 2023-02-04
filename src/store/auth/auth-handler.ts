@@ -46,6 +46,7 @@ function* handleRequestAuthGetme(action: IAction): any {
     console.log(error);
   }
 }
+
 function* handleRequestAuthLogin(action: PayloadAction<any>): any {
   try {
     const { payload } = action;
